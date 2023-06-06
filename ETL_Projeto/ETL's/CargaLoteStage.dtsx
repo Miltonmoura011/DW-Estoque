@@ -1,0 +1,536 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/29/2023 1:30:09 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="MILTON"
+  DTS:CreatorName="MILTON\moura"
+  DTS:DTSID="{86FF6985-7702-4994-83C7-66E181074E56}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5035.3"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="2"
+  DTS:VersionGUID="{45D5BBC5-5BCD-47E1-B172-F8808515E402}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[MILTON.ESTOQUE]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{B1E193A1-F175-463F-91BE-5457993CD9B3}"
+      DTS:ObjectName="MILTON.ESTOQUE">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=MILTON;Initial Catalog=ESTOQUE;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{B1E193A1-F175-463F-91BE-5457993CD9B3}MILTON.ESTOQUE;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[MILTON.ESTOQUE_STAGE]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E27ACD00-6F56-40AD-ABFB-18FD42033DC8}"
+      DTS:ObjectName="MILTON.ESTOQUE_STAGE">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=MILTON;Initial Catalog=ESTOQUE_STAGE;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{E27ACD00-6F56-40AD-ABFB-18FD42033DC8}MILTON.ESTOQUE_STAGE;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\CargaLoteStage"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarefa Fluxo de Dados"
+      DTS:DTSID="{C13C3F15-7F66-43F0-974F-DD0E866E24B6}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="CargaLoteStage"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\CargaLoteStage\LOTE"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino OLE DB"
+              name="LOTE"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[LOTE]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CargaLoteStage\LOTE.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[MILTON.ESTOQUE_STAGE]"
+                  connectionManagerRefId="Package.ConnectionManagers[MILTON.ESTOQUE_STAGE]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\CargaLoteStage\LOTE.Inputs[Entrada de Destino OLE DB]"
+                  errorOrTruncationOperation="Inserir"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de Destino OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CargaLoteStage\LOTE.Inputs[Entrada de Destino OLE DB].Columns[IDLOTE]"
+                      cachedDataType="i4"
+                      cachedName="IDLOTE"
+                      externalMetadataColumnId="Package\CargaLoteStage\LOTE.Inputs[Entrada de Destino OLE DB].ExternalColumns[IDLOTE]"
+                      lineageId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[IDLOTE]" />
+                    <inputColumn
+                      refId="Package\CargaLoteStage\LOTE.Inputs[Entrada de Destino OLE DB].Columns[DATAFABRICACAO]"
+                      cachedDataType="dbDate"
+                      cachedName="DATAFABRICACAO"
+                      externalMetadataColumnId="Package\CargaLoteStage\LOTE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DATAFABRICACAO]"
+                      lineageId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[DATAFABRICACAO]" />
+                    <inputColumn
+                      refId="Package\CargaLoteStage\LOTE.Inputs[Entrada de Destino OLE DB].Columns[DATAVALIDADE]"
+                      cachedDataType="dbDate"
+                      cachedName="DATAVALIDADE"
+                      externalMetadataColumnId="Package\CargaLoteStage\LOTE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DATAVALIDADE]"
+                      lineageId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[DATAVALIDADE]" />
+                    <inputColumn
+                      refId="Package\CargaLoteStage\LOTE.Inputs[Entrada de Destino OLE DB].Columns[SERIE]"
+                      cachedDataType="i4"
+                      cachedName="SERIE"
+                      externalMetadataColumnId="Package\CargaLoteStage\LOTE.Inputs[Entrada de Destino OLE DB].ExternalColumns[SERIE]"
+                      lineageId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SERIE]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CargaLoteStage\LOTE.Inputs[Entrada de Destino OLE DB].ExternalColumns[IDLOTE]"
+                      dataType="i4"
+                      name="IDLOTE" />
+                    <externalMetadataColumn
+                      refId="Package\CargaLoteStage\LOTE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DATAFABRICACAO]"
+                      dataType="dbDate"
+                      name="DATAFABRICACAO" />
+                    <externalMetadataColumn
+                      refId="Package\CargaLoteStage\LOTE.Inputs[Entrada de Destino OLE DB].ExternalColumns[DATAVALIDADE]"
+                      dataType="dbDate"
+                      name="DATAVALIDADE" />
+                    <externalMetadataColumn
+                      refId="Package\CargaLoteStage\LOTE.Inputs[Entrada de Destino OLE DB].ExternalColumns[SERIE]"
+                      dataType="i4"
+                      name="SERIE" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CargaLoteStage\LOTE.Outputs[Saída de Erro de Destino OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Destino OLE DB"
+                  synchronousInputId="Package\CargaLoteStage\LOTE.Inputs[Entrada de Destino OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CargaLoteStage\LOTE.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CargaLoteStage\LOTE.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CargaLoteStage\LOTE.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CargaLoteStage\LOTE.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CargaLoteStage\Origem OLE DB"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+              description="Origem OLE DB"
+              name="Origem OLE DB"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[dbo].[LOTE]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="A variável que contém o comando SQL a ser executado."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CargaLoteStage\Origem OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[MILTON.ESTOQUE]"
+                  connectionManagerRefId="Package.ConnectionManagers[MILTON.ESTOQUE]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Origem OLE DB]"
+                  name="Saída de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[IDLOTE]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[IDLOTE]"
+                      lineageId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[IDLOTE]"
+                      name="IDLOTE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[DATAFABRICACAO]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[DATAFABRICACAO]"
+                      lineageId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[DATAFABRICACAO]"
+                      name="DATAFABRICACAO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[DATAVALIDADE]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[DATAVALIDADE]"
+                      lineageId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[DATAVALIDADE]"
+                      name="DATAVALIDADE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SERIE]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SERIE]"
+                      lineageId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[SERIE]"
+                      name="SERIE"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[IDLOTE]"
+                      dataType="i4"
+                      name="IDLOTE" />
+                    <externalMetadataColumn
+                      refId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[DATAFABRICACAO]"
+                      dataType="dbDate"
+                      name="DATAFABRICACAO" />
+                    <externalMetadataColumn
+                      refId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[DATAVALIDADE]"
+                      dataType="dbDate"
+                      name="DATAVALIDADE" />
+                    <externalMetadataColumn
+                      refId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[SERIE]"
+                      dataType="i4"
+                      name="SERIE" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB]"
+                  isErrorOut="true"
+                  name="Saída de Erro de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[IDLOTE]"
+                      dataType="i4"
+                      lineageId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[IDLOTE]"
+                      name="IDLOTE" />
+                    <outputColumn
+                      refId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[DATAFABRICACAO]"
+                      dataType="dbDate"
+                      lineageId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[DATAFABRICACAO]"
+                      name="DATAFABRICACAO" />
+                    <outputColumn
+                      refId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[DATAVALIDADE]"
+                      dataType="dbDate"
+                      lineageId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[DATAVALIDADE]"
+                      name="DATAVALIDADE" />
+                    <outputColumn
+                      refId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SERIE]"
+                      dataType="i4"
+                      lineageId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[SERIE]"
+                      name="SERIE" />
+                    <outputColumn
+                      refId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\CargaLoteStage.Paths[Saída de Origem OLE DB]"
+              endId="Package\CargaLoteStage\LOTE.Inputs[Entrada de Destino OLE DB]"
+              name="Saída de Origem OLE DB"
+              startId="Package\CargaLoteStage\Origem OLE DB.Outputs[Saída de Origem OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Tarefa Executar SQL"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarefa Executar SQL"
+      DTS:DTSID="{D976B383-1A2F-481B-B496-15938D59F782}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Tarefa Executar SQL"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{E27ACD00-6F56-40AD-ABFB-18FD42033DC8}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE LOTE&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{8CFFC1CF-2FA3-4DF1-9164-BBCC1F365B12}"
+      DTS:From="Package\Tarefa Executar SQL"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\CargaLoteStage" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="154.4,41.6"
+          Id="Package\CargaLoteStage"
+          TopLeft="162.49999354283,130.866667706701" />
+        <NodeLayout
+          Size="176,41.6"
+          Id="Package\Tarefa Executar SQL"
+          TopLeft="166.666660043929,32.0666669215096" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="254.666660043929,73.6666669215096">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-14.9666665010986,57.2000007851918"
+              Start="0,0"
+              End="-14.9666665010986,49.7000007851918">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,24.6000003925959" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,24.6000003925959"
+                    Point2="0,28.6000003925959"
+                    Point3="-4,28.6000003925959" />
+                  <mssgle:LineSegment
+                    End="-10.9666665010986,28.6000003925959" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-10.9666665010986,28.6000003925959"
+                    Point2="-14.9666665010986,28.6000003925959"
+                    Point3="-14.9666665010986,32.6000003925959" />
+                  <mssgle:LineSegment
+                    End="-14.9666665010986,49.7000007851918" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\CargaLoteStage">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="153.6,41.6"
+          Id="Package\CargaLoteStage\Origem OLE DB"
+          TopLeft="227.499990959963,52.8666670868132" />
+        <NodeLayout
+          Size="105.6,41.6"
+          Id="Package\CargaLoteStage\LOTE"
+          TopLeft="233.3333240615,188.933334834841" />
+        <EdgeLayout
+          Id="Package\CargaLoteStage.Paths[Saída de Origem OLE DB]"
+          TopLeft="304.299990959963,94.4666670868132">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-18.1666668984625,94.4666677480274"
+              Start="0,0"
+              End="-18.1666668984625,86.9666677480274">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.2333338740137" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,43.2333338740137"
+                    Point2="0,47.2333338740137"
+                    Point3="-4,47.2333338740137" />
+                  <mssgle:LineSegment
+                    End="-14.1666668984625,47.2333338740137" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-14.1666668984625,47.2333338740137"
+                    Point2="-18.1666668984625,47.2333338740137"
+                    Point3="-18.1666668984625,51.2333338740137" />
+                  <mssgle:LineSegment
+                    End="-18.1666668984625,86.9666677480274" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\CargaLoteStage\LOTE">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CargaLoteStage\Origem OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

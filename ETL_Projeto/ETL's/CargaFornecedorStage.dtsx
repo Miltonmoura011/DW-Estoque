@@ -1,0 +1,820 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/29/2023 1:27:09 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="MILTON"
+  DTS:CreatorName="MILTON\moura"
+  DTS:DTSID="{B1CE9F9D-884C-46BF-88D7-1BF8070D13AB}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5035.3"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{9CBC58B6-E4C3-4689-917C-C3CD89EC9169}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[MILTON.ESTOQUE]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{61026F01-E114-4DAA-B962-0FD89FDAA891}"
+      DTS:ObjectName="MILTON.ESTOQUE">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=MILTON;Initial Catalog=ESTOQUE;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{61026F01-E114-4DAA-B962-0FD89FDAA891}MILTON.ESTOQUE;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[MILTON.ESTOQUE_STAGE]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{88E2E0DF-92DD-402E-95B9-C1ED651DA76E}"
+      DTS:ObjectName="MILTON.ESTOQUE_STAGE">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=MILTON;Initial Catalog=ESTOQUE_STAGE;Provider=SQLNCLI11.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{88E2E0DF-92DD-402E-95B9-C1ED651DA76E}MILTON.ESTOQUE_STAGE;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\CargaFornecedorStage"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarefa Fluxo de Dados"
+      DTS:DTSID="{A8770DFF-264A-4A6B-A648-F156FD40EED2}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="CargaFornecedorStage"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\CargaFornecedorStage\FORNECEDOR"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino OLE DB"
+              name="FORNECEDOR"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[FORNECEDOR]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CargaFornecedorStage\FORNECEDOR.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[MILTON.ESTOQUE_STAGE]"
+                  connectionManagerRefId="Package.ConnectionManagers[MILTON.ESTOQUE_STAGE]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB]"
+                  errorOrTruncationOperation="Inserir"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de Destino OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].Columns[IDFORNECEDOR]"
+                      cachedDataType="i4"
+                      cachedName="IDFORNECEDOR"
+                      externalMetadataColumnId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].ExternalColumns[IDFORNECEDOR]"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[IDFORNECEDOR]" />
+                    <inputColumn
+                      refId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].Columns[NOMEFORNECEDOR]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="80"
+                      cachedName="NOMEFORNECEDOR"
+                      externalMetadataColumnId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].ExternalColumns[NOMEFORNECEDOR]"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[NOMEFORNECEDOR]" />
+                    <inputColumn
+                      refId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].Columns[CNPJ]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="18"
+                      cachedName="CNPJ"
+                      externalMetadataColumnId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].ExternalColumns[CNPJ]"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CNPJ]" />
+                    <inputColumn
+                      refId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].Columns[ENDERECO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="60"
+                      cachedName="ENDERECO"
+                      externalMetadataColumnId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].ExternalColumns[ENDERECO]"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ENDERECO]" />
+                    <inputColumn
+                      refId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].Columns[BAIRRO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="45"
+                      cachedName="BAIRRO"
+                      externalMetadataColumnId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].ExternalColumns[BAIRRO]"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[BAIRRO]" />
+                    <inputColumn
+                      refId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].Columns[CIDADE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="60"
+                      cachedName="CIDADE"
+                      externalMetadataColumnId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].ExternalColumns[CIDADE]"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CIDADE]" />
+                    <inputColumn
+                      refId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].Columns[UF]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="UF"
+                      externalMetadataColumnId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].ExternalColumns[UF]"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UF]" />
+                    <inputColumn
+                      refId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].Columns[EMAIL]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="80"
+                      cachedName="EMAIL"
+                      externalMetadataColumnId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].ExternalColumns[EMAIL]"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[EMAIL]" />
+                    <inputColumn
+                      refId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].Columns[TELEFONE]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="TELEFONE"
+                      externalMetadataColumnId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].ExternalColumns[TELEFONE]"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TELEFONE]" />
+                    <inputColumn
+                      refId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].Columns[TELEFONE2]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="TELEFONE2"
+                      externalMetadataColumnId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].ExternalColumns[TELEFONE2]"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TELEFONE2]" />
+                    <inputColumn
+                      refId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].Columns[CONTATO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="80"
+                      cachedName="CONTATO"
+                      externalMetadataColumnId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].ExternalColumns[CONTATO]"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CONTATO]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].ExternalColumns[IDFORNECEDOR]"
+                      dataType="i4"
+                      name="IDFORNECEDOR" />
+                    <externalMetadataColumn
+                      refId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].ExternalColumns[NOMEFORNECEDOR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="80"
+                      name="NOMEFORNECEDOR" />
+                    <externalMetadataColumn
+                      refId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].ExternalColumns[CNPJ]"
+                      codePage="1252"
+                      dataType="str"
+                      length="18"
+                      name="CNPJ" />
+                    <externalMetadataColumn
+                      refId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].ExternalColumns[ENDERECO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="ENDERECO" />
+                    <externalMetadataColumn
+                      refId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].ExternalColumns[BAIRRO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="45"
+                      name="BAIRRO" />
+                    <externalMetadataColumn
+                      refId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].ExternalColumns[CIDADE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="CIDADE" />
+                    <externalMetadataColumn
+                      refId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].ExternalColumns[UF]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="UF" />
+                    <externalMetadataColumn
+                      refId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].ExternalColumns[EMAIL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="80"
+                      name="EMAIL" />
+                    <externalMetadataColumn
+                      refId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].ExternalColumns[TELEFONE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="TELEFONE" />
+                    <externalMetadataColumn
+                      refId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].ExternalColumns[TELEFONE2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="TELEFONE2" />
+                    <externalMetadataColumn
+                      refId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB].ExternalColumns[CONTATO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="80"
+                      name="CONTATO" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\CargaFornecedorStage\FORNECEDOR.Outputs[Saída de Erro de Destino OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Destino OLE DB"
+                  synchronousInputId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CargaFornecedorStage\FORNECEDOR.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CargaFornecedorStage\FORNECEDOR.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CargaFornecedorStage\FORNECEDOR.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CargaFornecedorStage\FORNECEDOR.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\CargaFornecedorStage\Origem OLE DB"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+              description="Origem OLE DB"
+              name="Origem OLE DB"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[dbo].[FORNECEDOR]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="A variável que contém o comando SQL a ser executado."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\CargaFornecedorStage\Origem OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[MILTON.ESTOQUE]"
+                  connectionManagerRefId="Package.ConnectionManagers[MILTON.ESTOQUE]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB]"
+                  name="Saída de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[IDFORNECEDOR]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[IDFORNECEDOR]"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[IDFORNECEDOR]"
+                      name="IDFORNECEDOR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[NOMEFORNECEDOR]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[NOMEFORNECEDOR]"
+                      length="80"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[NOMEFORNECEDOR]"
+                      name="NOMEFORNECEDOR"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CNPJ]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[CNPJ]"
+                      length="18"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CNPJ]"
+                      name="CNPJ"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ENDERECO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ENDERECO]"
+                      length="60"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[ENDERECO]"
+                      name="ENDERECO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[BAIRRO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[BAIRRO]"
+                      length="45"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[BAIRRO]"
+                      name="BAIRRO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CIDADE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[CIDADE]"
+                      length="60"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CIDADE]"
+                      name="CIDADE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UF]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[UF]"
+                      length="2"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[UF]"
+                      name="UF"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[EMAIL]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[EMAIL]"
+                      length="80"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[EMAIL]"
+                      name="EMAIL"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TELEFONE]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[TELEFONE]"
+                      length="20"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TELEFONE]"
+                      name="TELEFONE"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TELEFONE2]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[TELEFONE2]"
+                      length="20"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[TELEFONE2]"
+                      name="TELEFONE2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CONTATO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[CONTATO]"
+                      length="80"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].Columns[CONTATO]"
+                      name="CONTATO"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[IDFORNECEDOR]"
+                      dataType="i4"
+                      name="IDFORNECEDOR" />
+                    <externalMetadataColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[NOMEFORNECEDOR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="80"
+                      name="NOMEFORNECEDOR" />
+                    <externalMetadataColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[CNPJ]"
+                      codePage="1252"
+                      dataType="str"
+                      length="18"
+                      name="CNPJ" />
+                    <externalMetadataColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[ENDERECO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="ENDERECO" />
+                    <externalMetadataColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[BAIRRO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="45"
+                      name="BAIRRO" />
+                    <externalMetadataColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[CIDADE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="CIDADE" />
+                    <externalMetadataColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[UF]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="UF" />
+                    <externalMetadataColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[EMAIL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="80"
+                      name="EMAIL" />
+                    <externalMetadataColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[TELEFONE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="TELEFONE" />
+                    <externalMetadataColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[TELEFONE2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="TELEFONE2" />
+                    <externalMetadataColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB].ExternalColumns[CONTATO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="80"
+                      name="CONTATO" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB]"
+                  isErrorOut="true"
+                  name="Saída de Erro de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[IDFORNECEDOR]"
+                      dataType="i4"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[IDFORNECEDOR]"
+                      name="IDFORNECEDOR" />
+                    <outputColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[NOMEFORNECEDOR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="80"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[NOMEFORNECEDOR]"
+                      name="NOMEFORNECEDOR" />
+                    <outputColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[CNPJ]"
+                      codePage="1252"
+                      dataType="str"
+                      length="18"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[CNPJ]"
+                      name="CNPJ" />
+                    <outputColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ENDERECO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ENDERECO]"
+                      name="ENDERECO" />
+                    <outputColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[BAIRRO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="45"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[BAIRRO]"
+                      name="BAIRRO" />
+                    <outputColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[CIDADE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[CIDADE]"
+                      name="CIDADE" />
+                    <outputColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[UF]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[UF]"
+                      name="UF" />
+                    <outputColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[EMAIL]"
+                      codePage="1252"
+                      dataType="str"
+                      length="80"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[EMAIL]"
+                      name="EMAIL" />
+                    <outputColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[TELEFONE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[TELEFONE]"
+                      name="TELEFONE" />
+                    <outputColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[TELEFONE2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[TELEFONE2]"
+                      name="TELEFONE2" />
+                    <outputColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[CONTATO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="80"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[CONTATO]"
+                      name="CONTATO" />
+                    <outputColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\CargaFornecedorStage.Paths[Saída de Origem OLE DB]"
+              endId="Package\CargaFornecedorStage\FORNECEDOR.Inputs[Entrada de Destino OLE DB]"
+              name="Saída de Origem OLE DB"
+              startId="Package\CargaFornecedorStage\Origem OLE DB.Outputs[Saída de Origem OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TruncaTabelaStage"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarefa Executar SQL"
+      DTS:DTSID="{c44c8319-ef83-4be2-a56f-a6373cf711ad}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TruncaTabelaStage"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{88E2E0DF-92DD-402E-95B9-C1ED651DA76E}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE FORNECEDOR" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{A1AAA795-FBD4-44B5-92AD-9AC8D8F120D8}"
+      DTS:From="Package\TruncaTabelaStage"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\CargaFornecedorStage" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="187.2,41.6"
+          Id="Package\CargaFornecedorStage"
+          TopLeft="132.499994734923,130.866667706701" />
+        <NodeLayout
+          Size="169.6,41.6"
+          Id="Package\TruncaTabelaStage"
+          TopLeft="132.499994734923,23.5999993801117" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="217.299994734923,65.1999993801117">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="8.79999999999998,65.6666683265898"
+              Start="0,0"
+              End="8.79999999999998,58.1666683265898">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.8333341632949" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.8333341632949"
+                    Point2="0,32.8333341632949"
+                    Point3="4,32.8333341632949" />
+                  <mssgle:LineSegment
+                    End="4.79999999999998,32.8333341632949" />
+                  <mssgle:CubicBezierSegment
+                    Point1="4.79999999999998,32.8333341632949"
+                    Point2="8.79999999999998,32.8333341632949"
+                    Point3="8.79999999999998,36.8333341632949" />
+                  <mssgle:LineSegment
+                    End="8.79999999999998,58.1666683265898" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\CargaFornecedorStage">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="153.6,41.6"
+          Id="Package\CargaFornecedorStage\Origem OLE DB"
+          TopLeft="165.833326743709,51.1333337397046" />
+        <NodeLayout
+          Size="152,41.6"
+          Id="Package\CargaFornecedorStage\FORNECEDOR"
+          TopLeft="164.16666014327,180.266668099297" />
+        <EdgeLayout
+          Id="Package\CargaFornecedorStage.Paths[Saída de Origem OLE DB]"
+          TopLeft="241.399993443489,92.7333337397046">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,87.5333343595929"
+              Start="0,0"
+              End="0,80.0333343595929">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,80.0333343595929" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\CargaFornecedorStage\FORNECEDOR">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\CargaFornecedorStage\Origem OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
